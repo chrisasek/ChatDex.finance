@@ -1,5 +1,11 @@
 import styles from './page.module.css';
 
+// The public landing page changes with each hackathon release. Rendering it
+// per request prevents a previous standalone build's prerendered index.html
+// from surviving an overlay deployment on cPanel/Passenger.
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default function Home() {
   return <main className={styles.page}>
     <nav className={styles.nav} aria-label="Primary navigation"><a className={styles.brand} href="#top"><span>C</span>ChatDex <em>DEMO</em></a><a href="#how">How it works</a></nav>

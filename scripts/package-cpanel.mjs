@@ -36,6 +36,10 @@ if (await exists(publicSource)) {
 
 const appEntry = `process.env.HOSTNAME ||= '0.0.0.0';\nrequire('./apps/web/server.js');\n`;
 await writeFile(path.join(destination, 'app.js'), appEntry, 'utf8');
+// cPanel installations created earlier in the build used app.cjs. Ship both
+// entrypoint names so extracting an update cannot leave Passenger running a
+// stale startup file.
+await writeFile(path.join(destination, 'app.cjs'), appEntry, 'utf8');
 
 const manifest = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
 await writeFile(
