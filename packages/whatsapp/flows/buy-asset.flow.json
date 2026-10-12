@@ -1,0 +1,124 @@
+{
+  "version": "7.1",
+  "data_api_version": "3.0",
+  "routing_model": {
+    "BUY_ASSET": [
+      "REVIEW_BUY"
+    ],
+    "REVIEW_BUY": []
+  },
+  "screens": [
+    {
+      "id": "BUY_ASSET",
+      "title": "Buy asset",
+      "data": {
+        "symbol": {
+          "type": "string",
+          "__example__": "NVDA"
+        },
+        "currency": {
+          "type": "string",
+          "__example__": "USD"
+        }
+      },
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "Form",
+            "name": "buy_form",
+            "children": [
+              {
+                "type": "TextHeading",
+                "text": "Prepare a stock purchase"
+              },
+              {
+                "type": "TextBody",
+                "text": "This prepares an order only. No trade will be placed in WhatsApp."
+              },
+              {
+                "type": "TextInput",
+                "name": "symbol",
+                "label": "Asset",
+                "required": true,
+                "init-value": "${data.symbol}"
+              },
+              {
+                "type": "TextInput",
+                "name": "amount",
+                "label": "Amount (USD)",
+                "input-type": "number",
+                "required": true
+              },
+              {
+                "type": "Footer",
+                "label": "Review",
+                "on-click-action": {
+                  "name": "data_exchange",
+                  "payload": {
+                    "symbol": "${form.symbol}",
+                    "amount": "${form.amount}",
+                    "currency": "${data.currency}"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "REVIEW_BUY",
+      "title": "Order prepared",
+      "terminal": true,
+      "success": true,
+      "data": {
+        "symbol": {
+          "type": "string",
+          "__example__": "NVDA"
+        },
+        "amount": {
+          "type": "string",
+          "__example__": "50"
+        },
+        "currency": {
+          "type": "string",
+          "__example__": "USD"
+        },
+        "execution_mode": {
+          "type": "string",
+          "__example__": "Paper trade"
+        },
+        "preparation_status": {
+          "type": "string",
+          "__example__": "prepared"
+        },
+        "review_url": {
+          "type": "string",
+          "__example__": "https://usechatdex.com/action/opaque-token"
+        }
+      },
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "TextHeading",
+            "text": "${data.symbol} · ${data.currency} ${data.amount}"
+          },
+          {
+            "type": "TextBody",
+            "text": "${data.execution_mode}. Your order is prepared, but it has not been executed."
+          },
+          {
+            "type": "Footer",
+            "label": "Review & Buy",
+            "on-click-action": {
+              "name": "open_url",
+              "url": "${data.review_url}"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

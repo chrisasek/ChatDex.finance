@@ -1,0 +1,1 @@
+{"name":"@chatdex/trading","version":"0.1.0","private":true,"type":"module","exports":"./src/index.ts","dependencies":{"@chatdex/core":"0.1.0","@chatdex/intents":"0.1.0","@chatdex/markets":"0.1.0"}}

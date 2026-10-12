@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./apps/web/src/*"],
+      "@chatdex/shared": ["./packages/shared/src/index.ts"],
+      "@chatdex/intents": ["./packages/intents/src/index.ts"],
+      "@chatdex/markets": ["./packages/markets/src/index.ts"],
+      "@chatdex/trading": ["./packages/trading/src/index.ts"],
+      "@chatdex/claims": ["./packages/claims/src/index.ts"],
+      "@chatdex/crypto": ["./packages/crypto/src/index.ts"],
+      "@chatdex/core": ["./packages/core/src/index.ts"],
+      "@chatdex/database": ["./packages/database/src/index.ts"],
+      "@chatdex/whatsapp": ["./packages/whatsapp/src/index.ts"]
+    }
+  },
+  "include": ["apps/**/*.ts", "apps/**/*.tsx", "packages/**/*.ts", "scripts/**/*.ts", "vitest.config.ts"],
+  "exclude": ["node_modules", ".next"]
+}

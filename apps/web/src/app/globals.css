@@ -1,0 +1,16 @@
+:root {
+  --cd-chat-wallpaper: #efece6;
+  --cd-bubble-in: #ffffff;
+  --cd-raised: #ffffff;
+  --cd-border: #d7dce1;
+  --cd-text: #0b0f14;
+  --cd-text-secondary: #6b7885;
+  --cd-accent-ink: #b4530f;
+  --cd-accent-fill: #ff8a3d;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--cd-chat-wallpaper); color: var(--cd-text); font-family: Inter, Arial, sans-serif; }
+button, input { font: inherit; }
+button { cursor: pointer; }

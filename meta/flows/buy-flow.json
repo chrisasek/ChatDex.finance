@@ -1,0 +1,96 @@
+{
+  "version": "7.3",
+  "data_api_version": "3.0",
+  "routing_model": {
+    "BUY_ASSET": ["REVIEW_BUY"],
+    "REVIEW_BUY": []
+  },
+  "screens": [
+    {
+      "id": "BUY_ASSET",
+      "title": "Prepare paper buy",
+      "data": {
+        "symbol": { "type": "string", "__example__": "NVDA" },
+        "currency": { "type": "string", "__example__": "USD" },
+        "symbol_heading": { "type": "string", "__example__": "Buy NVDA" },
+        "amount_label": { "type": "string", "__example__": "Amount (USD)" }
+      },
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "Form",
+            "name": "buy_form",
+            "children": [
+              { "type": "TextHeading", "text": "${data.symbol_heading}" },
+              { "type": "TextBody", "text": "Enter the amount to prepare. This Flow does not place a trade." },
+              {
+                "type": "TextInput",
+                "name": "amount",
+                "label": "${data.amount_label}",
+                "input-type": "number",
+                "helper-text": "Numbers only, for example 50",
+                "required": true
+              },
+              {
+                "type": "Footer",
+                "label": "Prepare order",
+                "on-click-action": {
+                  "name": "data_exchange",
+                  "payload": {
+                    "symbol": "${data.symbol}",
+                    "amount": "${form.amount}",
+                    "currency": "${data.currency}"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "REVIEW_BUY",
+      "title": "Review & Buy",
+      "terminal": true,
+      "success": true,
+      "data": {
+        "symbol": { "type": "string", "__example__": "NVDA" },
+        "amount": { "type": "string", "__example__": "50" },
+        "currency": { "type": "string", "__example__": "USD" },
+        "execution_mode": { "type": "string", "__example__": "Paper trade" },
+        "summary": { "type": "string", "__example__": "NVDA · USD 50" },
+        "execution_notice": { "type": "string", "__example__": "Paper trade. Your order is prepared but has not been placed." },
+        "preparation_status": { "type": "string", "__example__": "prepared" },
+        "review_url": { "type": "string", "__example__": "https://usechatdex.com/action/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }
+      },
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "Form",
+            "name": "review_form",
+            "children": [
+              { "type": "TextHeading", "text": "${data.summary}" },
+              { "type": "TextBody", "text": "${data.execution_notice}" },
+              {
+                "type": "Footer",
+                "label": "Send Review & Buy link",
+                "on-click-action": {
+                  "name": "complete",
+                  "payload": {
+                    "preparation_status": "${data.preparation_status}",
+                    "symbol": "${data.symbol}",
+                    "amount": "${data.amount}",
+                    "currency": "${data.currency}",
+                    "review_url": "${data.review_url}"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

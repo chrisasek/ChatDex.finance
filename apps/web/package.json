@@ -1,0 +1,29 @@
+{
+  "name": "@chatdex/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@chatdex/claims": "0.1.0",
+    "@chatdex/core": "0.1.0",
+    "@chatdex/database": "0.1.0",
+    "@chatdex/intents": "0.1.0",
+    "@chatdex/markets": "0.1.0",
+    "@chatdex/shared": "0.1.0",
+    "@chatdex/trading": "0.1.0",
+    "@chatdex/whatsapp": "0.1.0",
+    "next": "16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "eslint": "10.12.0",
+    "eslint-config-next": "16.4.0"
+  }
+}
